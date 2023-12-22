@@ -6,7 +6,7 @@
 /*   By: ychen2 <ychen2@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 13:46:32 by ychen2            #+#    #+#             */
-/*   Updated: 2023/12/21 19:57:34 by ychen2           ###   ########.fr       */
+/*   Updated: 2023/12/22 17:54:05 by ychen2           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,10 @@ void	b_pwd(t_minishell *m, bool is_print)
 			printf("%s\n", m->path);
 			exit(0);
 		}
+	}
+	else if (is_print)
+	{
+		perror("minishell: pwd");
 	}
 }
 

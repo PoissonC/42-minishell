@@ -6,7 +6,7 @@
 /*   By: ychen2 <ychen2@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/03 14:33:12 by ychen2            #+#    #+#             */
-/*   Updated: 2023/12/21 20:46:08 by ychen2           ###   ########.fr       */
+/*   Updated: 2023/12/22 16:02:00 by ychen2           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,8 @@ void	get_rid_of_sig(t_minishell *m)
 {
 	struct termios	termios;
 
+	ft_memset(&m->term_orig, 0, sizeof(m->term_orig));
+	tcgetattr(STDIN_FILENO, &m->term_orig);
 	termios = m->term_orig;
 	termios.c_lflag &= ~ECHOCTL;
 	termios.c_lflag |= (ECHO | ICANON | ISIG);
@@ -60,7 +62,7 @@ int	main(void)
 	t_minishell	m;
 
 	sig_init();
-	tcgetattr(STDIN_FILENO, &m.term_orig);
+	get_rid_of_sig(&m);
 	m.end_stat = 0;
 	m.mem_env = ft_lstnew(NULL);
 	if (!m.mem_env)

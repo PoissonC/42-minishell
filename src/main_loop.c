@@ -6,7 +6,7 @@
 /*   By: ychen2 <ychen2@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/03 14:33:12 by ychen2            #+#    #+#             */
-/*   Updated: 2023/12/21 19:47:46 by ychen2           ###   ########.fr       */
+/*   Updated: 2023/12/22 16:44:44 by ychen2           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,10 @@ void	main_loop(t_minishell *m)
 		get_rid_of_sig(m);
 		m->input = readline(PROMPT);
 		if (!m->input)
+		{
+			printf("exit\n");
 			break ;
+		}
 		if (m->input[0] == '\0')
 		{
 			restart_lp(m);

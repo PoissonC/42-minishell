@@ -6,7 +6,7 @@
 /*   By: ychen2 <ychen2@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 13:38:57 by ychen2            #+#    #+#             */
-/*   Updated: 2023/12/21 16:53:28 by ychen2           ###   ########.fr       */
+/*   Updated: 2023/12/22 16:08:12 by ychen2           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,10 @@ void	end_exe(t_minishell *m, int *status)
 			*status = WEXITSTATUS(*status);
 		else if (WIFSIGNALED(*status))
 			*status = WTERMSIG(*status) + 128;
+		if (*status == 130)
+			printf("^C\n");
+		else if (*status == 131)
+			printf("^\\Quit: 3\n");
 		i++;
 	}
 }

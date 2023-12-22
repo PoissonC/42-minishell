@@ -6,7 +6,7 @@
 /*   By: ychen2 <ychen2@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 13:46:32 by ychen2            #+#    #+#             */
-/*   Updated: 2023/12/21 15:42:22 by ychen2           ###   ########.fr       */
+/*   Updated: 2023/12/22 17:51:53 by ychen2           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,8 +63,11 @@ void	b_cd(t_minishell *m, int idx)
 	}
 	else
 	{
-		if (chdir(m->exe[idx].args[1]) != 0)
+		if (chdir(m->exe[idx].args[1]) != 0
+			&& ft_strncmp(m->exe[idx].args[1], ".", 2))
 			cd_error(m);
+		else if (!ft_strncmp(m->exe[idx].args[1], ".", 2))
+			cd_error_special(m);
 		mod_env_cd(m, getenv("PWD"));
 	}
 	if (m->exe_size != 1)

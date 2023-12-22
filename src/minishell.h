@@ -6,7 +6,7 @@
 /*   By: ychen2 <ychen2@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 14:51:39 by ychen2            #+#    #+#             */
-/*   Updated: 2023/12/21 20:46:13 by ychen2           ###   ########.fr       */
+/*   Updated: 2023/12/22 17:52:28 by ychen2           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,6 @@
 # include <fcntl.h>
 # include "../libft/libft.h"
 # define PROMPT "minishell$ "
-# define MINI_STDIN 40
-# define MINI_STDOUT 42
 
 extern char					**environ;
 int							g_sig;
@@ -166,6 +164,7 @@ bool	is_parent(t_minishell *m);
 void	exe_builtin(t_minishell *m, int idx, bool is_print);
 void	start_exe_cmd(t_minishell *m, int idx);
 char	**get_path(t_minishell *m, char *cmd);
+void	cd_error_special(t_minishell *m);
 
 //for env
 void	m_export(t_minishell *m, char *new_env, char *caller);
