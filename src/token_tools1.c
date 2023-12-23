@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   token_tools1.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tnualman <tnualman@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ychen2 <ychen2@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/13 15:17:18 by yu                #+#    #+#             */
-/*   Updated: 2023/12/20 19:35:16 by tnualman         ###   ########.fr       */
+/*   Updated: 2023/12/23 16:49:03 by ychen2           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "tokenizer.h"
 
 static bool	new_tok(t_minishell *m, char *cont, int size, int idx)
 {

@@ -6,11 +6,11 @@
 /*   By: ychen2 <ychen2@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 13:46:32 by ychen2            #+#    #+#             */
-/*   Updated: 2023/12/21 18:07:55 by ychen2           ###   ########.fr       */
+/*   Updated: 2023/12/23 16:51:01 by ychen2           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "exe.h"
 
 bool	is_parent(t_minishell *m)
 {

@@ -6,11 +6,11 @@
 /*   By: ychen2 <ychen2@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/21 15:23:56 by ychen2            #+#    #+#             */
-/*   Updated: 2023/12/21 15:27:31 by ychen2           ###   ########.fr       */
+/*   Updated: 2023/12/23 16:48:55 by ychen2           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "tokenizer.h"
 
 static bool	join_do(t_minishell *m, t_token *now)
 {

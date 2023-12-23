@@ -6,7 +6,7 @@
 /*   By: ychen2 <ychen2@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/12 13:17:36 by ychen2            #+#    #+#             */
-/*   Updated: 2023/12/19 21:23:46 by ychen2           ###   ########.fr       */
+/*   Updated: 2023/12/23 17:03:57 by ychen2           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,7 @@ bool	shell_malloc(t_minishell *m)
 	m->t_head = ft_malloc(sizeof(t_token), m->mem);
 	if (!m->t_head)
 		return (1);
-	m->path_size = 1;
-	m->path = ft_malloc(1024, m->mem);
+	m->path = ft_malloc(PATH_MAX, m->mem);
 	if (!m->path)
 		return (1);
 	return (0);

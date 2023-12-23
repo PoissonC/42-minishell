@@ -6,11 +6,11 @@
 /*   By: ychen2 <ychen2@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 13:46:32 by ychen2            #+#    #+#             */
-/*   Updated: 2023/12/22 17:54:05 by ychen2           ###   ########.fr       */
+/*   Updated: 2023/12/23 16:50:36 by ychen2           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "exe.h"
 
 static void	b_echo_n(t_exe exe, int i)
 {
@@ -76,7 +76,7 @@ void	b_echo(t_minishell *m, int idx)
 
 void	b_pwd(t_minishell *m, bool is_print)
 {
-	if (getcwd(m->path, (m->path_size * 1024)) != NULL)
+	if (getcwd(m->path, PATH_MAX) != NULL)
 	{
 		if (is_print)
 		{
@@ -84,10 +84,16 @@ void	b_pwd(t_minishell *m, bool is_print)
 			exit(0);
 		}
 	}
-	else if (is_print)
+	else if (is_print == 1)
 	{
-		perror("minishell: pwd");
+		m->path = getenv("PWD");
+		printf("%s\n", m->path);
+		m->end_stat = 1;
+		if (!is_parent(m))
+			exit(1);
 	}
+	else
+		m->path = getenv("PWD");
 }
 
 void	b_env(t_minishell *m, int idx)

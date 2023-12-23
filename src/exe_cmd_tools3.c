@@ -6,11 +6,11 @@
 /*   By: ychen2 <ychen2@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 16:03:52 by ychen2            #+#    #+#             */
-/*   Updated: 2023/12/22 17:56:19 by ychen2           ###   ########.fr       */
+/*   Updated: 2023/12/23 16:50:42 by ychen2           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "exe.h"
 
 bool	env_size_inc(t_minishell *m, char *new_str)
 {
@@ -93,14 +93,4 @@ void	b_unset(t_minishell *m, int idx)
 	}
 	if (m->exe_size != 1)
 		exit(0);
-}
-
-void	cd_error_special(t_minishell *m)
-{
-	ft_putstr_fd("cd: error retrieving current directory: getcwd:", 2);
-	ft_putstr_fd(" cannot access parent directories:", 2);
-	ft_putstr_fd(" No such file or directory\n", 2);
-	
-	if (m->exe_size != 1)
-		exit(errno);
 }

@@ -6,11 +6,11 @@
 /*   By: ychen2 <ychen2@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/21 15:38:07 by ychen2            #+#    #+#             */
-/*   Updated: 2023/12/21 15:38:20 by ychen2           ###   ########.fr       */
+/*   Updated: 2023/12/23 16:50:50 by ychen2           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "exe.h"
 
 void	b_exit_numerr(char *str)
 {

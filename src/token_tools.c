@@ -3,22 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   token_tools.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tnualman <tnualman@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ychen2 <ychen2@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/13 14:54:04 by yu                #+#    #+#             */
-/*   Updated: 2023/12/20 19:20:15 by tnualman         ###   ########.fr       */
+/*   Updated: 2023/12/23 16:47:27 by ychen2           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
-
-typedef struct s_sort
-{
-	t_token	*a_now;
-	t_token	*b_now;
-	int		idx_a;
-	int		idx_b;
-}				t_sort;
+#include "tokenizer.h"
 
 static void	get_s(t_minishell *m, t_sort *s)
 {

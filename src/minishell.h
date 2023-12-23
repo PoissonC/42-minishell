@@ -6,7 +6,7 @@
 /*   By: ychen2 <ychen2@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 14:51:39 by ychen2            #+#    #+#             */
-/*   Updated: 2023/12/22 17:52:28 by ychen2           ###   ########.fr       */
+/*   Updated: 2023/12/23 17:03:34 by ychen2           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,6 @@ typedef struct s_minishell
 {
 	struct termios	term_orig;
 	char			*path;
-	int				path_size;
 	int				a_size;
 	int				b_size;
 	t_token			*t_head;
@@ -126,14 +125,6 @@ bool	env_init(t_minishell *m);
 
 //token
 bool	tokenize(t_minishell *m);
-bool	quote(t_minishell *m);
-bool	normal(t_minishell *m);
-bool	redir(t_minishell *m);
-void	sort(t_minishell *m);
-bool	minishell_strtok(t_minishell *m, char *str, char *charset);
-bool	join(t_minishell *m);
-bool	pipeline(t_minishell *m);
-void	type(t_minishell *m);
 
 //env
 bool	get_env(t_minishell *m, t_token *tok, bool is_div);
@@ -143,28 +134,8 @@ bool	parse(t_minishell *m);
 
 //execute
 bool	exe(t_minishell *m);
-
-// for exe
-bool	exe_init(t_minishell *m);
-bool	exe_cmd(t_minishell *m);
-bool	exe_rdin(t_minishell *m);
-bool	exe_rdout(t_minishell *m);
-bool	exe_ap(t_minishell *m);
-bool	exe_rdr(t_minishell *m);
-bool	exe_hdc(t_minishell *m);
-bool	exe_pipe(t_minishell *m, int idx);
-void	b_echo(t_minishell *m, int idx);
-void	b_cd(t_minishell *m, int idx);
 void	b_pwd(t_minishell *m, bool is_print);
-void	b_export(t_minishell *m, int idx);
-void	b_unset(t_minishell *m, int idx);
-void	b_env(t_minishell *m, int idx);
-void	b_exit(t_minishell *m, int idx, bool is_print);
 bool	is_parent(t_minishell *m);
-void	exe_builtin(t_minishell *m, int idx, bool is_print);
-void	start_exe_cmd(t_minishell *m, int idx);
-char	**get_path(t_minishell *m, char *cmd);
-void	cd_error_special(t_minishell *m);
 
 //for env
 void	m_export(t_minishell *m, char *new_env, char *caller);

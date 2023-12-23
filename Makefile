@@ -7,7 +7,7 @@ SRC			=	\
 main.c main_loop.c signal.c signal_tools.c init.c \
 tokenizer.c token_tools.c token_tools1.c token_tools2.c token_tools3.c token_tools4.c token_tools5.c\
 env.c env_tools.c parser.c parser_tools.c parser_cmd.c parser_redir.c \
-exe.c exe_cmd.c exe_tools.c exe_heredoc.c exe_cmd_tools.c exe_cmd_tools2.c exe_cmd_tools3.c exe_cmd_tools4.c exe_cmd_tools5.c exe_cmd_tools6.c
+exe.c exe_cmd.c exe_tools.c exe_heredoc.c exe_cmd_tools.c exe_cmd_tools2.c exe_cmd_tools3.c exe_cmd_tools4.c exe_cmd_tools5.c exe_cmd_tools6.c exe_cmd_tools7.c
 SRCS		= $(addprefix $(SRC_PATH), $(SRC))
 SRCS		= $(addprefix $(SRC_PATH), $(SRC))
 # Objects
@@ -30,7 +30,9 @@ RLPATH		=	/usr/local/opt/readline/lib/
 
 HEADER		=	$(SRC_PATH)minishell.h \
 				$(SRC_PATH)env.h \
-				$(SRC_PATH)parser.h 
+				$(SRC_PATH)parser.h \
+				$(SRC_PATH)tokenizer.h \
+				$(SRC_PATH)exe.h 
 # Default rule: make all
 all: $(LIBFT) $(NAME)
 

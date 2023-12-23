@@ -6,11 +6,11 @@
 /*   By: ychen2 <ychen2@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 13:46:32 by ychen2            #+#    #+#             */
-/*   Updated: 2023/12/22 17:51:53 by ychen2           ###   ########.fr       */
+/*   Updated: 2023/12/23 16:50:40 by ychen2           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "exe.h"
 
 void	mod_env_cd(t_minishell *m, char *old_pwd)
 {
@@ -24,8 +24,8 @@ void	mod_env_cd(t_minishell *m, char *old_pwd)
 			exit(errno);
 	}
 	m_export(m, tmp, "cd");
+	free(tmp);
 	b_pwd(m, 0);
-	ft_lstlast(m->mem)->next = ft_lstnew(tmp);
 	tmp = ft_strjoin("PWD=", m->path);
 	if (!tmp)
 	{
@@ -34,14 +34,19 @@ void	mod_env_cd(t_minishell *m, char *old_pwd)
 			exit(errno);
 	}
 	m_export(m, tmp, "cd");
-	ft_lstlast(m->mem)->next = ft_lstnew(tmp);
+	free(tmp);
 }
 
-void	cd_error(t_minishell *m)
+void	cd_error(t_minishell *m, int idx)
 {
-	perror("minishell: cd");
+	ft_putstr_fd("minishell: cd: ", 2);
+	if (errno == EFAULT && !ft_strncmp(m->exe[idx].args[1], "-", 2))
+		ft_putstr_fd("OLDPWD not set\n", 2);
+	else
+		perror(m->exe[idx].args[1]);
 	if (m->exe_size != 1)
-		exit(errno);
+		exit(1);
+	m->end_stat = 1;
 }
 
 void	b_cd(t_minishell *m, int idx)
@@ -50,26 +55,20 @@ void	b_cd(t_minishell *m, int idx)
 		|| ft_strncmp(m->exe[idx].args[1], "~/", 3) == 0)
 	{
 		if (chdir(getenv("HOME")) != 0)
-			cd_error(m);
+			cd_error(m, idx);
 		mod_env_cd(m, getenv("PWD"));
 	}
 	else if (ft_strncmp(m->exe[idx].args[1], "-", 2) == 0
 		|| ft_strncmp(m->exe[idx].args[1], "-/", 3) == 0)
 	{
 		if (chdir(getenv("OLDPWD")) != 0)
-			cd_error(m);
-		printf("%s\n", getenv("OLDPWD"));
+			cd_error(m, idx);
+		else
+			printf("%s\n", getenv("OLDPWD"));
 		mod_env_cd(m, getenv("PWD"));
 	}
 	else
-	{
-		if (chdir(m->exe[idx].args[1]) != 0
-			&& ft_strncmp(m->exe[idx].args[1], ".", 2))
-			cd_error(m);
-		else if (!ft_strncmp(m->exe[idx].args[1], ".", 2))
-			cd_error_special(m);
-		mod_env_cd(m, getenv("PWD"));
-	}
+		b_cd_handle(m, idx);
 	if (m->exe_size != 1)
 		exit(0);
 }

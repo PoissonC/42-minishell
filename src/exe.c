@@ -6,11 +6,11 @@
 /*   By: ychen2 <ychen2@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 13:38:57 by ychen2            #+#    #+#             */
-/*   Updated: 2023/12/22 16:08:12 by ychen2           ###   ########.fr       */
+/*   Updated: 2023/12/23 16:52:13 by ychen2           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "exe.h"
 
 void	end_exe(t_minishell *m, int *status)
 {
