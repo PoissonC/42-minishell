@@ -6,7 +6,7 @@
 /*   By: ychen2 <ychen2@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/12 09:42:14 by ychen2            #+#    #+#             */
-/*   Updated: 2023/12/25 17:43:47 by ychen2           ###   ########.fr       */
+/*   Updated: 2023/12/25 22:23:51 by ychen2           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,7 +103,7 @@ bool	tokenize(t_minishell *m)
 	if (divide_tok(m, m->t_head, m->t_head->next))
 		return (1);
 	if (!m->t_head->next)
-		return (0);
+		return (1);
 	type(m);
 	if (check(m))
 		return (1);
