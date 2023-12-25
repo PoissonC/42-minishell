@@ -6,11 +6,29 @@
 /*   By: ychen2 <ychen2@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/12 15:03:49 by ychen2            #+#    #+#             */
-/*   Updated: 2023/12/25 22:30:02 by ychen2           ###   ########.fr       */
+/*   Updated: 2023/12/25 23:05:35 by ychen2           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "env.h"
+
+static void	set_is_div(t_token *tok, bool is_div, int idx)
+{
+	if (idx > 0)
+	{
+		if (idx > 1)
+		{
+			if (tok->cont[idx - 1] != '=' && ft_isalpha(tok->cont[idx - 2]))
+				tok->is_div = is_div;
+			else
+				tok->is_div = 0;
+		}
+		else
+			tok->is_div = is_div;
+	}
+	else
+		tok->is_div = is_div;
+}
 
 int	count(t_token *tok, bool is_div)
 {
@@ -33,7 +51,7 @@ int	count(t_token *tok, bool is_div)
 				if (tok->cont[i - 1] == '$')
 					continue ;
 			ct++;
-			tok->is_div = is_div;
+			set_is_div(tok, is_div, i);
 		}
 	}
 	return (ct);
