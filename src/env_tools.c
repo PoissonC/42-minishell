@@ -6,7 +6,7 @@
 /*   By: ychen2 <ychen2@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/12 15:03:49 by ychen2            #+#    #+#             */
-/*   Updated: 2023/12/19 16:38:58 by ychen2           ###   ########.fr       */
+/*   Updated: 2023/12/25 22:30:02 by ychen2           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ char	*get_name(t_minishell *m, t_env *env, char *str, int idx)
 	int		j;
 	char	*ans;
 
-	if (!ft_strncmp(str, "?", 2))
+	if (str[0] == '?')
 		return (get_stat_name(m));
 	i = 0;
 	while ((ft_isalnum(str[i])) && str[i])
