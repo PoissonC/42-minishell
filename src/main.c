@@ -6,7 +6,7 @@
 /*   By: ychen2 <ychen2@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/03 14:33:12 by ychen2            #+#    #+#             */
-/*   Updated: 2023/12/25 16:37:58 by ychen2           ###   ########.fr       */
+/*   Updated: 2023/12/25 22:02:15 by ychen2           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +16,17 @@ static void	handle_shell_lv(t_minishell *m)
 {
 	char	*tmp;
 	int		lv;
+	char	*lv_tmp;
 
 	lv = ft_atoi(getenv("SHLVL")) + 1;
-	tmp = ft_strjoin("SHLVL=", ft_itoa(lv));
+	lv_tmp = ft_itoa(lv);
+	tmp = ft_strjoin("SHLVL=", lv_tmp);
 	if (!tmp)
 	{
 		perror("minishell: cd");
 		exit(1);
 	}
+	free(lv_tmp);
 	m_export(m, tmp, NULL);
 	ft_lstlast(m->mem_env)->next = ft_lstnew(tmp);
 }

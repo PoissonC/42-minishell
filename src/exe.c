@@ -6,7 +6,7 @@
 /*   By: ychen2 <ychen2@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 13:38:57 by ychen2            #+#    #+#             */
-/*   Updated: 2023/12/25 21:24:14 by ychen2           ###   ########.fr       */
+/*   Updated: 2023/12/25 21:53:34 by ychen2           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ bool	exe(t_minishell *m)
 	if (exe_cmd(m))
 		return (1);
 	i = 0;
-	while (i < m->exe_size)
+	while (i < m->exe_size - 1)
 	{
 		close(m->exe[i].pipe[0]);
 		close(m->exe[i++].pipe[1]);

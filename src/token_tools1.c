@@ -6,7 +6,7 @@
 /*   By: ychen2 <ychen2@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/13 15:17:18 by yu                #+#    #+#             */
-/*   Updated: 2023/12/23 16:49:03 by ychen2           ###   ########.fr       */
+/*   Updated: 2023/12/25 22:18:07 by ychen2           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ static bool	new_tok(t_minishell *m, char *cont, int size, int idx)
 		return (1);
 	new_tok->next = NULL;
 	new_tok->cont = NULL;
+	new_tok->type = TYPE_ARG;
 	m->t_tail->next = new_tok;
 	m->t_tail = new_tok;
 	m->b_size++;

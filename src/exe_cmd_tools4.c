@@ -6,14 +6,14 @@
 /*   By: ychen2 <ychen2@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 16:20:16 by ychen2            #+#    #+#             */
-/*   Updated: 2023/12/25 21:04:27 by ychen2           ###   ########.fr       */
+/*   Updated: 2023/12/25 21:59:21 by ychen2           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "exe.h"
 
 void	reset_env(t_minishell *m, char **new_env, int tar_idx)
-{
+{(void)m;
 	int	i;
 
 	i = -1;

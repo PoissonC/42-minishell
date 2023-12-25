@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_free.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yu <yu@student.42.fr>                      +#+  +:+       +#+        */
+/*   By: ychen2 <ychen2@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/08 15:15:11 by ychen2            #+#    #+#             */
-/*   Updated: 2023/12/14 14:22:17 by yu               ###   ########.fr       */
+/*   Updated: 2023/12/25 22:00:08 by ychen2           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ void	ft_free(void *ptr, t_list *mem)
 		{
 			prev->next = mem->next;
 			ft_lstdelone(mem, &free);
+			break ;
 		}
 		prev = mem;
 		mem = mem->next;

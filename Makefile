@@ -1,6 +1,6 @@
 # Compiler and flags
 CC 			= cc
-CFLAGS 		= -Wall -Wextra -Werror -fsanitize=address
+CFLAGS 		= -Wall -Wextra -Werror #-fsanitize=address
 # Sources
 SRC_PATH	=	src/
 SRC			=	\

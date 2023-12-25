@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser_tools.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tnualman <tnualman@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ychen2 <ychen2@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/16 10:58:43 by yu                #+#    #+#             */
-/*   Updated: 2023/12/20 18:55:28 by tnualman         ###   ########.fr       */
+/*   Updated: 2023/12/25 21:52:09 by ychen2           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,15 +29,19 @@ t_token	*next_pipe(t_token *now)
 bool	rdr_malloc(t_minishell *m, int idx)
 {
 	if (m->exe[idx].rdr_size != 0)
+	{
 		m->exe[idx].rdr = ft_malloc(m->exe[idx].rdr_size * sizeof(t_rdr),
 				m->mem);
-	if (!m->exe[idx].rdr)
-		return (1);
+		if (!m->exe[idx].rdr)
+			return (1);
+	}
 	if (m->exe[idx].hdc_size != 0)
+	{
 		m->exe[idx].hdc = ft_malloc(m->exe[idx].hdc_size * sizeof(t_hdc),
 				m->mem);
-	if (!m->exe[idx].hdc)
-		return (1);
+		if (!m->exe[idx].hdc)
+			return (1);
+	}
 	return (0);
 }
 

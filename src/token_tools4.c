@@ -6,7 +6,7 @@
 /*   By: ychen2 <ychen2@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/12 09:42:14 by ychen2            #+#    #+#             */
-/*   Updated: 2023/12/25 16:46:09 by ychen2           ###   ########.fr       */
+/*   Updated: 2023/12/25 22:19:18 by ychen2           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,8 @@ static bool	type_fd(t_token *prev, int pos)
 static void	type_init(t_minishell *m, t_token **now, t_token **prev)
 {
 	(*now) = m->t_head->next;
+	if (!(*now))
+		return ;
 	if ((*now)->next)
 	{
 		if ((*now)->next->type == TYPE_REDIR_OUT

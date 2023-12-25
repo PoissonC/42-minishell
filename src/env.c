@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tnualman <tnualman@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ychen2 <ychen2@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/12 13:00:05 by ychen2            #+#    #+#             */
-/*   Updated: 2023/12/20 20:17:33 by tnualman         ###   ########.fr       */
+/*   Updated: 2023/12/25 22:11:24 by ychen2           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ static bool	copy_cont(t_minishell *m, t_token *tok, t_env *env, int i)
 	if (!copy)
 		return (1);
 	ft_free(env->cont, m->mem);
+	ft_lstadd_back(&m->mem, ft_lstnew(copy));
 	env->cont = copy;
 	return (0);
 }
@@ -32,6 +33,7 @@ static bool	copy_env(t_minishell *m, t_env *env, char *env_cont)
 	if (!copy)
 		return (1);
 	ft_free(env->cont, m->mem);
+	ft_lstadd_back(&m->mem, ft_lstnew(copy));
 	env->cont = copy;
 	return (0);
 }
@@ -41,7 +43,10 @@ static char	*get_cont(t_minishell *m, char *name)
 	char	*cont;
 
 	if (ft_strncmp("?", name, 2) == 0)
+	{
 		cont = ft_ltoa(m->end_stat);
+		ft_lstadd_back(&m->mem, ft_lstnew(cont));
+	}
 	else
 		cont = getenv(name);
 	return (cont);
