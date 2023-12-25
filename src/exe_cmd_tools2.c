@@ -6,7 +6,7 @@
 /*   By: ychen2 <ychen2@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 13:46:32 by ychen2            #+#    #+#             */
-/*   Updated: 2023/12/23 16:50:40 by ychen2           ###   ########.fr       */
+/*   Updated: 2023/12/25 21:31:15 by ychen2           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,13 +51,12 @@ void	cd_error(t_minishell *m, int idx)
 
 void	b_cd(t_minishell *m, int idx)
 {
-	if (ft_strncmp(m->exe[idx].args[1], "~", 2) == 0 || !m->exe[idx].args[1]
+	if (!m->exe[idx].args[1])
+		b_cd_home(m, idx);
+	else if (ft_strncmp(m->exe[idx].args[1], "~", 2) == 0
+		|| !m->exe[idx].args[1]
 		|| ft_strncmp(m->exe[idx].args[1], "~/", 3) == 0)
-	{
-		if (chdir(getenv("HOME")) != 0)
-			cd_error(m, idx);
-		mod_env_cd(m, getenv("PWD"));
-	}
+		b_cd_home(m, idx);
 	else if (ft_strncmp(m->exe[idx].args[1], "-", 2) == 0
 		|| ft_strncmp(m->exe[idx].args[1], "-/", 3) == 0)
 	{
@@ -96,7 +95,8 @@ void	b_export(t_minishell *m, int idx)
 				m_export(m, m->exe[idx].args[i], "export");
 				break ;
 			}
-			if (!ft_isalnum(m->exe[idx].args[i][j]))
+			if (!ft_isalpha(m->exe[idx].args[i][0])
+				|| !ft_isalnum(m->exe[idx].args[i][j]))
 			{
 				b_export_error(m->exe[idx].args[i]);
 				break ;

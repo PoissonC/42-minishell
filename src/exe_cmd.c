@@ -6,7 +6,7 @@
 /*   By: ychen2 <ychen2@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 13:46:32 by ychen2            #+#    #+#             */
-/*   Updated: 2023/12/23 16:50:55 by ychen2           ###   ########.fr       */
+/*   Updated: 2023/12/25 20:40:20 by ychen2           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,17 +61,18 @@ static void	start_exe_rdr(t_minishell *m, int idx)
 void	child_process(t_minishell *m, int idx)
 {
 	sig_default(m);
+	if (idx > 0)
+		close(m->exe[idx - 1].pipe[1]);
+	close(m->exe[idx].pipe[0]);
 	if (idx != m->exe_size - 1)
 	{
 		dup2(m->exe[idx].pipe[1], STDOUT_FILENO);
 		close(m->exe[idx].pipe[1]);
-		close(m->exe[idx].pipe[0]);
 	}
 	if (idx != 0)
 	{
 		dup2(m->exe[idx - 1].pipe[0], STDIN_FILENO);
 		close(m->exe[idx - 1].pipe[0]);
-		close(m->exe[idx - 1].pipe[1]);
 	}
 	start_exe_rdr(m, idx);
 	if (m->exe[idx].hdc_size)

@@ -6,7 +6,7 @@
 /*   By: ychen2 <ychen2@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 14:51:39 by ychen2            #+#    #+#             */
-/*   Updated: 2023/12/23 17:03:34 by ychen2           ###   ########.fr       */
+/*   Updated: 2023/12/25 16:55:03 by ychen2           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,6 +102,7 @@ typedef struct s_minishell
 	int				env_size;
 	t_list			*mem;
 	t_list			*mem_env;
+	bool			is_print_sig;
 }				t_minishell;
 
 //loop

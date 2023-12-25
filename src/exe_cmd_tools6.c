@@ -6,7 +6,7 @@
 /*   By: ychen2 <ychen2@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/21 15:38:07 by ychen2            #+#    #+#             */
-/*   Updated: 2023/12/23 16:50:50 by ychen2           ###   ########.fr       */
+/*   Updated: 2023/12/25 21:20:17 by ychen2           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,10 +60,7 @@ static void	b_exit_subroutine(t_minishell *m, int idx, int i, bool is_print)
 		else if (b_exit_checkover(m->exe[idx].args[1]))
 			b_exit_numerr(m->exe[idx].args[1]);
 		else
-		{
-			m->end_stat = ft_atol(m->exe[idx].args[1]);
-			exit(m->end_stat);
-		}
+			exit(ft_atol(m->exe[idx].args[1]));
 	}
 	else
 		b_exit_numerr(m->exe[idx].args[1]);

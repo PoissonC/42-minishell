@@ -7,7 +7,8 @@ SRC			=	\
 main.c main_loop.c signal.c signal_tools.c init.c \
 tokenizer.c token_tools.c token_tools1.c token_tools2.c token_tools3.c token_tools4.c token_tools5.c\
 env.c env_tools.c parser.c parser_tools.c parser_cmd.c parser_redir.c \
-exe.c exe_cmd.c exe_tools.c exe_heredoc.c exe_cmd_tools.c exe_cmd_tools2.c exe_cmd_tools3.c exe_cmd_tools4.c exe_cmd_tools5.c exe_cmd_tools6.c exe_cmd_tools7.c
+exe.c exe_cmd.c exe_tools.c exe_heredoc.c exe_cmd_tools.c exe_cmd_tools2.c exe_cmd_tools3.c \
+exe_cmd_tools4.c exe_cmd_tools5.c exe_cmd_tools6.c exe_cmd_tools7.c exe_cmd_tools8.c
 SRCS		= $(addprefix $(SRC_PATH), $(SRC))
 SRCS		= $(addprefix $(SRC_PATH), $(SRC))
 # Objects

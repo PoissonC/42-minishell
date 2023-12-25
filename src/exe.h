@@ -6,7 +6,7 @@
 /*   By: ychen2 <ychen2@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/23 16:49:23 by ychen2            #+#    #+#             */
-/*   Updated: 2023/12/23 16:57:34 by ychen2           ###   ########.fr       */
+/*   Updated: 2023/12/25 21:30:10 by ychen2           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,5 +37,6 @@ void	b_cd_handle(t_minishell *m, int idx);
 void	mod_env_cd(t_minishell *m, char *old_pwd);
 void	cd_error(t_minishell *m, int idx);
 void	mod_env_cd_special(t_minishell *m, char *old_pwd);
+void	b_cd_home(t_minishell *m, int idx);
 
 #endif

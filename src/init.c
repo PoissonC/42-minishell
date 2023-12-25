@@ -6,7 +6,7 @@
 /*   By: ychen2 <ychen2@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/12 13:17:36 by ychen2            #+#    #+#             */
-/*   Updated: 2023/12/23 17:03:57 by ychen2           ###   ########.fr       */
+/*   Updated: 2023/12/25 20:57:35 by ychen2           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ bool	shell_init(t_minishell *m)
 	m->t_tail = m->t_head;
 	m->exe_idx = 0;
 	m->exe_size = 0;
+	m->is_print_sig = 1;
 	return (0);
 }
 

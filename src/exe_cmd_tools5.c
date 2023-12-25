@@ -6,7 +6,7 @@
 /*   By: ychen2 <ychen2@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/21 15:34:00 by ychen2            #+#    #+#             */
-/*   Updated: 2023/12/23 16:50:47 by ychen2           ###   ########.fr       */
+/*   Updated: 2023/12/25 21:28:08 by ychen2           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,14 @@ static void	cmd_not_found(char *cmd)
 	if (errno == 2)
 		exit(127);
 	exit(1);
+}
+
+static void	no_such_file(char *cmd)
+{
+	ft_putstr_fd("minishell: ", 2);
+	ft_putstr_fd(cmd, 2);
+	ft_putstr_fd(": No such file or directory\n", 2);
+	exit(127);
 }
 
 static void	exe_absolute(t_minishell *m, int idx)
@@ -43,12 +51,9 @@ static void	exe_path(t_minishell *m, int idx)
 	char	**path;
 
 	path = get_path(m, m->exe[idx].args[0]);
-	if (!path)
-	{
-		perror("minishell");
-		exit(errno);
-	}
 	exe_builtin(m, idx, 0);
+	if (!path)
+		no_such_file(m->exe[idx].args[0]);
 	i = 0;
 	while (path[i])
 	{

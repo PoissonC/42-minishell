@@ -6,7 +6,7 @@
 /*   By: ychen2 <ychen2@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 16:03:52 by ychen2            #+#    #+#             */
-/*   Updated: 2023/12/23 16:50:42 by ychen2           ###   ########.fr       */
+/*   Updated: 2023/12/25 21:27:47 by ychen2           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,12 @@ void	b_unset(t_minishell *m, int idx)
 	{
 		if (getenv(m->exe[idx].args[i]))
 			m_unset(m, m->exe[idx].args[i]);
+		else
+		{
+			ft_putstr_fd("minishell: unset: `", 2);
+			ft_putstr_fd(m->exe[idx].args[i], 2);
+			ft_putstr_fd("': not a valid identifier\n", 2);
+		}
 		i++;
 	}
 	if (m->exe_size != 1)
