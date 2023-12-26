@@ -6,7 +6,7 @@
 /*   By: ychen2 <ychen2@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/22 15:07:36 by ychen2            #+#    #+#             */
-/*   Updated: 2023/12/19 21:17:57 by ychen2           ###   ########.fr       */
+/*   Updated: 2023/12/26 17:32:09 by ychen2           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static void	put_arr(char **str, long long n, int idx)
 {
-	if (n == LONG_LONG_MIN)
+	if (n == LLONG_MIN)
 	{
 		ft_strlcpy(*str, "-9223372036854775808", 21);
 		return ;
