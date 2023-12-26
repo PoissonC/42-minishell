@@ -6,7 +6,7 @@
 /*   By: ychen2 <ychen2@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 14:51:39 by ychen2            #+#    #+#             */
-/*   Updated: 2023/12/25 16:55:03 by ychen2           ###   ########.fr       */
+/*   Updated: 2023/12/26 17:08:57 by ychen2           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@
 # define PROMPT "minishell$ "
 
 extern char					**environ;
-int							g_sig;
+extern int					g_sig;
 typedef struct s_token		t_token;
 typedef struct s_exe		t_exe;
 typedef struct s_rdr		t_rdr;

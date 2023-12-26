@@ -6,7 +6,7 @@
 /*   By: ychen2 <ychen2@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/03 14:33:12 by ychen2            #+#    #+#             */
-/*   Updated: 2023/12/25 22:24:07 by ychen2           ###   ########.fr       */
+/*   Updated: 2023/12/25 23:43:09 by ychen2           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,15 @@ static void	main_loop_process(t_minishell *m)
 	if (tokenize(m))
 	{
 		if (m->t_head->next)
-			ft_putstr_fd(
-				"minishell: syntax error near unexpected token `newline'\n", 2);
+		{
+			if (m->t_tail->type == TYPE_REDIR_IN)
+				ft_putstr_fd(
+					"minishell: syntax error near unexpected token `<'\n", 2);
+			else
+				ft_putstr_fd(
+					"minishell:\
+syntax error near unexpected token `newline'\n", 2);
+		}
 		restart_lp(m);
 		return ;
 	}
