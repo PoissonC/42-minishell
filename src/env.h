@@ -6,7 +6,7 @@
 /*   By: ychen2 <ychen2@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/12 15:04:45 by ychen2            #+#    #+#             */
-/*   Updated: 2023/12/28 16:48:37 by ychen2           ###   ########.fr       */
+/*   Updated: 2023/12/28 18:09:37 by ychen2           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,4 +23,5 @@ typedef struct s_env
 
 char	*get_name(t_minishell *m, t_env *env, char *str, int idx);
 bool	copy_env(t_minishell *m, t_env *env, char *env_cont);
+char	*get_cont(t_minishell *m, char *name);
 #endif

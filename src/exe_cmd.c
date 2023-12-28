@@ -6,7 +6,7 @@
 /*   By: ychen2 <ychen2@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 13:46:32 by ychen2            #+#    #+#             */
-/*   Updated: 2023/12/28 16:06:37 by ychen2           ###   ########.fr       */
+/*   Updated: 2023/12/28 17:20:15 by ychen2           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ static void	start_exe_rdr(t_minishell *m, int idx)
 				exit(errno);
 			}
 		}
-		else if (m->exe[idx].rdr[i].fd == STDIN_FILENO)
+		else
 			m->exe[idx].if_exe = 0;
 		i++;
 	}

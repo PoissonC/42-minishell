@@ -6,40 +6,26 @@
 /*   By: ychen2 <ychen2@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/12 13:00:05 by ychen2            #+#    #+#             */
-/*   Updated: 2023/12/28 17:09:17 by ychen2           ###   ########.fr       */
+/*   Updated: 2023/12/28 18:12:04 by ychen2           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "env_str.h"
 
-static bool	copy_cont(t_minishell *m, char *str, t_env *env, int i)
+static bool	copy_cont(t_minishell *m, char **str, t_env *env, int i)
 {
 	char	*copy;
 
-	copy = ft_strjoin(env->cont, str + i);
+	copy = ft_strjoin(env->cont, *str + i);
 	if (!copy)
 		return (1);
-	ft_free(str, m->mem);
+	ft_free(env->cont, m->mem);
 	ft_lstadd_back(&m->mem, ft_lstnew(copy));
-	str = copy;
+	env->cont = copy;
 	return (0);
 }
 
-static char	*get_cont(t_minishell *m, char *name)
-{
-	char	*cont;
-
-	if (ft_strncmp("?", name, 2) == 0)
-	{
-		cont = ft_ltoa(m->end_stat);
-		ft_lstadd_back(&m->mem, ft_lstnew(cont));
-	}
-	else
-		cont = getenv(name);
-	return (cont);
-}
-
-static bool	handle_env_str(t_minishell *m, char *str, t_env *env)
+static bool	handle_env_str(t_minishell *m, char **str, t_env *env)
 {
 	int		i;
 	char	*cont;
@@ -49,8 +35,8 @@ static bool	handle_env_str(t_minishell *m, char *str, t_env *env)
 	while (++i < env->num)
 	{
 		if (env->num - i > 1)
-			str[env->idx[i + 1]] = 0;
-		name = get_name(m, env, &str[env->idx[i] + 1], i);
+			(*str)[env->idx[i + 1]] = 0;
+		name = get_name(m, env, *str + env->idx[i] + 1, i);
 		if (!name)
 			return (1);
 		cont = get_cont(m, name);
@@ -62,7 +48,7 @@ static bool	handle_env_str(t_minishell *m, char *str, t_env *env)
 			ft_free(cont, m->mem);
 		ft_free(name, m->mem);
 		if (env->num - i > 1)
-			str[env->idx[i + 1]] = '$';
+			(*str)[env->idx[i + 1]] = '$';
 	}
 	return (0);
 }
@@ -77,6 +63,7 @@ bool	get_env_str(t_minishell *m, char **str)
 	env.idx = ft_malloc(sizeof(int) * env.num, m->mem);
 	if (!env.idx)
 		return (1);
+	ft_lstadd_back(&m->mem, ft_lstnew(*str));
 	get_idx_str(*str, &env);
 	env.cont = ft_malloc(ft_strlen(*str) + 1, m->mem);
 	if (!env.cont)
@@ -84,9 +71,9 @@ bool	get_env_str(t_minishell *m, char **str)
 	(*str)[env.idx[0]] = 0;
 	ft_strcpy(env.cont, *str);
 	(*str)[env.idx[0]] = '$';
-	if (handle_env_str(m, *str, &env))
+	if (handle_env_str(m, str, &env))
 		return (1);
-	free(*str);
+	ft_free(*str, m->mem);
 	*str = env.cont;
 	ft_free(env.idx, m->mem);
 	return (0);

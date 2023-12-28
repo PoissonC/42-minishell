@@ -6,7 +6,7 @@
 /*   By: ychen2 <ychen2@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/23 16:49:23 by ychen2            #+#    #+#             */
-/*   Updated: 2023/12/28 15:46:34 by ychen2           ###   ########.fr       */
+/*   Updated: 2023/12/28 18:26:20 by ychen2           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,5 +38,7 @@ void	mod_env_cd(t_minishell *m, char *old_pwd);
 void	cd_error(t_minishell *m, int idx);
 void	mod_env_cd_special(t_minishell *m, char *old_pwd);
 void	b_cd_home(t_minishell *m, int idx);
+void	is_a_dir(char *str);
+void	check_if_dir(char *cmd);
 
 #endif

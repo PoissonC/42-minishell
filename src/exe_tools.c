@@ -6,7 +6,7 @@
 /*   By: ychen2 <ychen2@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 13:46:32 by ychen2            #+#    #+#             */
-/*   Updated: 2023/12/28 16:28:01 by ychen2           ###   ########.fr       */
+/*   Updated: 2023/12/28 18:35:31 by ychen2           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,11 +55,11 @@ void	exe_rdr(t_minishell *m)
 	int	i;
 	int	j;
 
-	i = 0;
-	while (i < m->exe_size)
+	i = -1;
+	while (++i < m->exe_size)
 	{
-		j = 0;
-		while (j < m->exe[i].rdr_size)
+		j = -1;
+		while (++j < m->exe[i].rdr_size)
 		{
 			if (m->exe[i].rdr[j].type >= 1 && m->exe[i].rdr[j].type <= 3)
 			{
@@ -74,9 +74,7 @@ void	exe_rdr(t_minishell *m)
 				else
 					m->exe[i].rdr[j].if_rdr = 1;
 			}
-			j++;
 		}
-		i++;
 	}
 }
 

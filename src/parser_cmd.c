@@ -6,7 +6,7 @@
 /*   By: ychen2 <ychen2@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 12:31:45 by ychen2            #+#    #+#             */
-/*   Updated: 2023/12/28 16:07:06 by ychen2           ###   ########.fr       */
+/*   Updated: 2023/12/28 17:23:25 by ychen2           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,9 @@ static int	get_arg_size(t_token *now)
 		if (now->type == TYPE_PIPE)
 			break ;
 		if (now->type == TYPE_COMMAND || now->type == TYPE_ARG)
-			ct++;
+			if (now->cont)
+				if (now->cont[0])
+					ct++;
 		now = now->next;
 	}
 	return (ct);
@@ -36,7 +38,9 @@ static void	fill_args(t_minishell *m, int idx, int arg_size, t_token *now)
 	while (i < arg_size - 1)
 	{
 		if (now->type == TYPE_COMMAND || now->type == TYPE_ARG)
-			m->exe[idx].args[i++] = now->cont;
+			if (now->cont)
+				if (now->cont[0])
+					m->exe[idx].args[i++] = now->cont;
 		now = now->next;
 	}
 	m->exe[idx].args[i] = NULL;

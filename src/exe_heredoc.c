@@ -6,7 +6,7 @@
 /*   By: ychen2 <ychen2@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/17 23:18:23 by yu                #+#    #+#             */
-/*   Updated: 2023/12/28 17:07:08 by ychen2           ###   ########.fr       */
+/*   Updated: 2023/12/28 18:12:42 by ychen2           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,6 @@ static void	hdc_write(t_hdc hdc, char *buf)
 	i = 0;
 	while (buf[i] != '\0')
 		write(hdc.pipe[1], &buf[i++], 1);
-	if (buf[i - 1] != '\n')
-		write(hdc.pipe[1], "\n", 1);
 	free(buf);
 	write(1, "> ", 2);
 }

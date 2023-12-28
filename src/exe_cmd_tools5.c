@@ -6,7 +6,7 @@
 /*   By: ychen2 <ychen2@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/21 15:34:00 by ychen2            #+#    #+#             */
-/*   Updated: 2023/12/25 21:28:08 by ychen2           ###   ########.fr       */
+/*   Updated: 2023/12/28 18:32:01 by ychen2           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ static void	no_such_file(char *cmd)
 
 static void	exe_absolute(t_minishell *m, int idx)
 {
+	check_if_dir(m->exe[idx].args[0]);
 	execve(m->exe[idx].args[0], m->exe[idx].args, environ);
 	ft_putstr_fd("minishell: ", 2);
 	ft_putstr_fd(m->exe[idx].args[0], 2);
@@ -47,8 +48,8 @@ static void	exe_absolute(t_minishell *m, int idx)
 
 static void	exe_path(t_minishell *m, int idx)
 {
-	int		i;
-	char	**path;
+	int			i;
+	char		**path;
 
 	path = get_path(m, m->exe[idx].args[0]);
 	exe_builtin(m, idx, 0);
@@ -57,6 +58,7 @@ static void	exe_path(t_minishell *m, int idx)
 	i = 0;
 	while (path[i])
 	{
+		check_if_dir(path[i]);
 		if (access(path[i], X_OK) == 0)
 		{
 			execve(path[i], m->exe[idx].args, environ);

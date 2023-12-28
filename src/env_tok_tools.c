@@ -6,7 +6,7 @@
 /*   By: ychen2 <ychen2@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/12 15:03:49 by ychen2            #+#    #+#             */
-/*   Updated: 2023/12/28 16:34:20 by ychen2           ###   ########.fr       */
+/*   Updated: 2023/12/28 18:37:39 by ychen2           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,17 +41,19 @@ int	count(t_token *tok, bool is_div)
 	{
 		if (tok->cont[i] == '$' && tok->cont[i + 1])
 		{
-			if (i != 0)
-				if (tok->cont[i - 1] == '\\' || tok->cont[i + 1] == '\0')
+			if (tok->cont[i + 1] != ' ')
+			{
+				if (i != 0)
+					if (tok->cont[i - 1] == '\\' || tok->cont[i + 1] == '\0')
+						continue ;
+				if (i >= 2)
+					if (tok->cont[i - 2] != '\\' && tok->cont[i - 1] == '$')
+						continue ;
+				if (i == 1 && tok->cont[i - 1] == '$')
 					continue ;
-			if (i >= 2)
-				if (tok->cont[i - 2] != '\\' && tok->cont[i - 1] == '$')
-					continue ;
-			if (i == 1)
-				if (tok->cont[i - 1] == '$')
-					continue ;
-			ct++;
-			set_is_div(tok, is_div, i);
+				ct++;
+				set_is_div(tok, is_div, i);
+			}
 		}
 	}
 	return (ct);

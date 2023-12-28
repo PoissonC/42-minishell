@@ -6,7 +6,7 @@
 /*   By: ychen2 <ychen2@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/12 13:00:05 by ychen2            #+#    #+#             */
-/*   Updated: 2023/12/28 16:48:32 by ychen2           ###   ########.fr       */
+/*   Updated: 2023/12/28 18:09:32 by ychen2           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ bool	copy_env(t_minishell *m, t_env *env, char *env_cont)
 	return (0);
 }
 
-static char	*get_cont(t_minishell *m, char *name)
+char	*get_cont(t_minishell *m, char *name)
 {
 	char	*cont;
 
