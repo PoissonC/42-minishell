@@ -6,7 +6,7 @@
 /*   By: ychen2 <ychen2@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/21 15:38:07 by ychen2            #+#    #+#             */
-/*   Updated: 2023/12/25 21:20:17 by ychen2           ###   ########.fr       */
+/*   Updated: 2023/12/28 15:31:29 by ychen2           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,8 @@ bool	b_exit_checkover(char *num)
 
 bool	b_exit_checkdigits(char *num)
 {
+	if (num[0] == '+')
+		num++;
 	if (ft_isdigit_str(num))
 		return (1);
 	if (num[0] == '-' && ft_isdigit_str(num + 1) && ft_strlen(num) > 1)

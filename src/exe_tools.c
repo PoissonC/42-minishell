@@ -6,7 +6,7 @@
 /*   By: ychen2 <ychen2@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 13:46:32 by ychen2            #+#    #+#             */
-/*   Updated: 2023/12/25 21:09:48 by ychen2           ###   ########.fr       */
+/*   Updated: 2023/12/28 16:28:01 by ychen2           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ static bool	open_rdr(t_rdr *rdr)
 	return (0);
 }
 
-bool	exe_rdr(t_minishell *m)
+void	exe_rdr(t_minishell *m)
 {
 	int	i;
 	int	j;
@@ -68,14 +68,16 @@ bool	exe_rdr(t_minishell *m)
 					ft_putstr_fd("minishell: ", 2);
 					perror(m->exe[i].rdr[j].fn);
 					m->end_stat = errno;
-					return (1);
+					m->exe[i].rdr[j].if_rdr = 0;
+					break ;
 				}
+				else
+					m->exe[i].rdr[j].if_rdr = 1;
 			}
 			j++;
 		}
 		i++;
 	}
-	return (0);
 }
 
 bool	exe_pipe(t_minishell *m, int idx)

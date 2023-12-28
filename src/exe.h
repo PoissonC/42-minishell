@@ -6,7 +6,7 @@
 /*   By: ychen2 <ychen2@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/23 16:49:23 by ychen2            #+#    #+#             */
-/*   Updated: 2023/12/25 21:30:10 by ychen2           ###   ########.fr       */
+/*   Updated: 2023/12/28 15:46:34 by ychen2           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ bool	exe_cmd(t_minishell *m);
 bool	exe_rdin(t_minishell *m);
 bool	exe_rdout(t_minishell *m);
 bool	exe_ap(t_minishell *m);
-bool	exe_rdr(t_minishell *m);
+void	exe_rdr(t_minishell *m);
 bool	exe_hdc(t_minishell *m);
 bool	exe_pipe(t_minishell *m, int idx);
 void	b_echo(t_minishell *m, int idx);

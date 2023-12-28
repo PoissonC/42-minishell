@@ -6,7 +6,7 @@
 /*   By: ychen2 <ychen2@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 13:46:32 by ychen2            #+#    #+#             */
-/*   Updated: 2023/12/25 21:31:15 by ychen2           ###   ########.fr       */
+/*   Updated: 2023/12/28 15:28:23 by ychen2           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,11 +72,12 @@ void	b_cd(t_minishell *m, int idx)
 		exit(0);
 }
 
-static void	b_export_error(char *str)
+static void	b_export_error(t_minishell *m, char *str)
 {
 	ft_putstr_fd("minishell: export: `", 2);
 	ft_putstr_fd(str, 2);
 	ft_putstr_fd("': not a valid identifier\n", 2);
+	m->end_stat = 1;
 }
 
 void	b_export(t_minishell *m, int idx)
@@ -98,7 +99,7 @@ void	b_export(t_minishell *m, int idx)
 			if (!ft_isalpha(m->exe[idx].args[i][0])
 				|| !ft_isalnum(m->exe[idx].args[i][j]))
 			{
-				b_export_error(m->exe[idx].args[i]);
+				b_export_error(m, m->exe[idx].args[i]);
 				break ;
 			}
 			j++;

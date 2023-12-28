@@ -6,7 +6,7 @@
 /*   By: ychen2 <ychen2@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/21 11:29:33 by ychen2            #+#    #+#             */
-/*   Updated: 2023/12/19 20:52:02 by ychen2           ###   ########.fr       */
+/*   Updated: 2023/12/28 16:15:17 by ychen2           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,4 +87,5 @@ char		*ft_strjoin_m(char **strarr, t_list *mem);
 int			ft_isdigit_str(char *s);
 long long	ft_atol(const char *str);
 char		*ft_ltoa(long long n);
+int			ft_isalnum_str(char *str);
 #endif

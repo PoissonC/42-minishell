@@ -6,7 +6,7 @@
 /*   By: ychen2 <ychen2@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 13:38:57 by ychen2            #+#    #+#             */
-/*   Updated: 2023/12/25 21:53:34 by ychen2           ###   ########.fr       */
+/*   Updated: 2023/12/28 15:50:07 by ychen2           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,7 @@ bool	exe(t_minishell *m)
 
 	if (exe_hdc(m))
 		return (1);
-	if (exe_rdr(m))
-		return (1);
+	exe_rdr(m);
 	if (exe_cmd(m))
 		return (1);
 	i = 0;

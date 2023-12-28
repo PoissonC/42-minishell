@@ -1,40 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   env.c                                              :+:      :+:    :+:   */
+/*   env_str.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ychen2 <ychen2@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/12 13:00:05 by ychen2            #+#    #+#             */
-/*   Updated: 2023/12/25 22:11:24 by ychen2           ###   ########.fr       */
+/*   Updated: 2023/12/28 17:09:17 by ychen2           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "env.h"
+#include "env_str.h"
 
-static bool	copy_cont(t_minishell *m, t_token *tok, t_env *env, int i)
+static bool	copy_cont(t_minishell *m, char *str, t_env *env, int i)
 {
 	char	*copy;
 
-	copy = ft_strjoin(env->cont, &tok->cont[i]);
+	copy = ft_strjoin(env->cont, str + i);
 	if (!copy)
 		return (1);
-	ft_free(env->cont, m->mem);
+	ft_free(str, m->mem);
 	ft_lstadd_back(&m->mem, ft_lstnew(copy));
-	env->cont = copy;
-	return (0);
-}
-
-static bool	copy_env(t_minishell *m, t_env *env, char *env_cont)
-{
-	char	*copy;
-
-	copy = ft_strjoin(env->cont, env_cont);
-	if (!copy)
-		return (1);
-	ft_free(env->cont, m->mem);
-	ft_lstadd_back(&m->mem, ft_lstnew(copy));
-	env->cont = copy;
+	str = copy;
 	return (0);
 }
 
@@ -52,7 +39,7 @@ static char	*get_cont(t_minishell *m, char *name)
 	return (cont);
 }
 
-static bool	handle_env(t_minishell *m, t_token *tok, t_env *env)
+static bool	handle_env_str(t_minishell *m, char *str, t_env *env)
 {
 	int		i;
 	char	*cont;
@@ -62,45 +49,45 @@ static bool	handle_env(t_minishell *m, t_token *tok, t_env *env)
 	while (++i < env->num)
 	{
 		if (env->num - i > 1)
-			tok->cont[env->idx[i + 1]] = 0;
-		name = get_name(m, env, &tok->cont[env->idx[i] + 1], i);
+			str[env->idx[i + 1]] = 0;
+		name = get_name(m, env, &str[env->idx[i] + 1], i);
 		if (!name)
 			return (1);
 		cont = get_cont(m, name);
 		if (cont == NULL)
 			cont = "";
 		copy_env(m, env, cont);
-		copy_cont(m, tok, env, env->idx[i] + ft_strlen(name) + 1);
+		copy_cont(m, str, env, env->idx[i] + ft_strlen(name) + 1);
 		if (ft_strncmp("?", name, 2) == 0)
 			ft_free(cont, m->mem);
 		ft_free(name, m->mem);
 		if (env->num - i > 1)
-			tok->cont[env->idx[i + 1]] = '$';
+			str[env->idx[i + 1]] = '$';
 	}
 	return (0);
 }
 
-bool	get_env(t_minishell *m, t_token *tok, bool is_div)
+bool	get_env_str(t_minishell *m, char **str)
 {
 	t_env	env;
 
-	env.num = count(tok, is_div);
+	env.num = count_str(*str);
 	if (env.num == 0)
 		return (0);
 	env.idx = ft_malloc(sizeof(int) * env.num, m->mem);
 	if (!env.idx)
 		return (1);
-	get_idx(tok, &env);
-	env.cont = ft_malloc(ft_strlen(tok->cont) + 1, m->mem);
+	get_idx_str(*str, &env);
+	env.cont = ft_malloc(ft_strlen(*str) + 1, m->mem);
 	if (!env.cont)
 		return (1);
-	tok->cont[env.idx[0]] = 0;
-	ft_strcpy(env.cont, tok->cont);
-	tok->cont[env.idx[0]] = '$';
-	if (handle_env(m, tok, &env))
+	(*str)[env.idx[0]] = 0;
+	ft_strcpy(env.cont, *str);
+	(*str)[env.idx[0]] = '$';
+	if (handle_env_str(m, *str, &env))
 		return (1);
-	ft_free(tok->cont, m->mem);
-	tok->cont = env.cont;
+	free(*str);
+	*str = env.cont;
 	ft_free(env.idx, m->mem);
 	return (0);
 }

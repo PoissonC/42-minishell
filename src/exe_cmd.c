@@ -6,7 +6,7 @@
 /*   By: ychen2 <ychen2@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 13:46:32 by ychen2            #+#    #+#             */
-/*   Updated: 2023/12/25 21:58:28 by ychen2           ###   ########.fr       */
+/*   Updated: 2023/12/28 16:06:37 by ychen2           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,11 +48,16 @@ static void	start_exe_rdr(t_minishell *m, int idx)
 	i = 0;
 	while (i < m->exe[idx].rdr_size)
 	{
-		if (dup2(m->exe[idx].rdr[i].o_fd, m->exe[idx].rdr[i].fd) == -1)
+		if (m->exe[idx].rdr[i].if_rdr)
 		{
-			perror("minishell");
-			exit(errno);
+			if (dup2(m->exe[idx].rdr[i].o_fd, m->exe[idx].rdr[i].fd) == -1)
+			{
+				perror("minishell");
+				exit(errno);
+			}
 		}
+		else if (m->exe[idx].rdr[i].fd == STDIN_FILENO)
+			m->exe[idx].if_exe = 0;
 		i++;
 	}
 	m->end_stat = 0;
@@ -82,7 +87,9 @@ void	child_process(t_minishell *m, int idx)
 		close(m->exe[idx].hdc[m->exe[idx].hdc_size - 1].pipe[0]);
 		close(m->exe[idx].hdc[m->exe[idx].hdc_size - 1].pipe[1]);
 	}
-	start_exe_cmd(m, idx);
+	if (m->exe[idx].if_exe)
+		start_exe_cmd(m, idx);
+	exit(1);
 }
 
 void	exe_parent(t_minishell *m)

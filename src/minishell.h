@@ -6,7 +6,7 @@
 /*   By: ychen2 <ychen2@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 14:51:39 by ychen2            #+#    #+#             */
-/*   Updated: 2023/12/26 17:08:57 by ychen2           ###   ########.fr       */
+/*   Updated: 2023/12/28 17:03:46 by ychen2           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,7 @@ struct s_rdr
 	int		o_fd;
 	char	*fn;
 	t_type	type;
+	bool	if_rdr;
 };
 
 struct s_hdc
@@ -84,6 +85,7 @@ struct s_exe
 	int		hdc_size;
 	pid_t	pid;
 	int		pipe[2];
+	bool	if_exe;
 };
 
 typedef struct s_minishell
@@ -144,5 +146,6 @@ void	m_unset(t_minishell *m, char *target);
 bool	env_size_inc(t_minishell *m, char *new_str);
 bool	env_size_dec(t_minishell *m, char *target, int tar_len);
 bool	is_exist_export(t_minishell *m, char *target);
+bool	get_env_str(t_minishell *m, char **str);
 
 #endif
