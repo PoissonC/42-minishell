@@ -6,7 +6,7 @@
 /*   By: ychen2 <ychen2@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/12 15:04:45 by ychen2            #+#    #+#             */
-/*   Updated: 2023/12/28 16:44:05 by ychen2           ###   ########.fr       */
+/*   Updated: 2023/12/28 18:47:30 by ychen2           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,4 +16,5 @@
 
 int		count_str(char *str);
 void	get_idx_str(char *str, t_env *env);
+
 #endif

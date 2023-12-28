@@ -31,6 +31,8 @@ RLPATH		=	/usr/local/opt/readline/lib/
 
 HEADER		=	$(SRC_PATH)minishell.h \
 				$(SRC_PATH)env.h \
+				$(SRC_PATH)env_str.h \
+				$(SRC_PATH)env_tok.h \
 				$(SRC_PATH)parser.h \
 				$(SRC_PATH)tokenizer.h \
 				$(SRC_PATH)exe.h 
