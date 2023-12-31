@@ -6,7 +6,7 @@
 /*   By: ychen2 <ychen2@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/12 09:45:23 by ychen2            #+#    #+#             */
-/*   Updated: 2023/12/23 16:49:02 by ychen2           ###   ########.fr       */
+/*   Updated: 2023/12/31 14:02:59 by ychen2           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,7 @@ static bool	new_tok(t_minishell *m, int size, int pos)
 	new_tok = ft_malloc(sizeof(t_token), m->mem);
 	if (!new_tok)
 		return (1);
-	new_tok->next = NULL;
-	new_tok->cont = NULL;
+	ft_memset(new_tok, 0, sizeof(t_token));
 	m->t_tail->next = new_tok;
 	m->t_tail = new_tok;
 	m->a_size++;
@@ -31,6 +30,7 @@ static bool	new_tok(t_minishell *m, int size, int pos)
 	ft_strlcpy(new_tok->cont, m->input + pos + 1, size);
 	new_tok->end_pos = pos + size;
 	new_tok->pos = pos;
+	new_tok->type = TYPE_ARG;
 	i = 0;
 	while (i <= size)
 	{

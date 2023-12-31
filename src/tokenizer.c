@@ -6,7 +6,7 @@
 /*   By: ychen2 <ychen2@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/12 09:42:14 by ychen2            #+#    #+#             */
-/*   Updated: 2023/12/28 16:23:47 by ychen2           ###   ########.fr       */
+/*   Updated: 2023/12/31 14:04:21 by ychen2           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ static	bool	new_tok(t_minishell *m, char *cont, t_token *prev, t_token *now)
 		return (1);
 	new_tok->next = now->next;
 	new_tok->cont = cont;
+	new_tok->type = TYPE_ARG;
 	prev->next = new_tok;
 	if (prev == m->t_tail)
 		m->t_tail = new_tok;

@@ -6,7 +6,7 @@
 /*   By: ychen2 <ychen2@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/03 14:53:20 by ychen2            #+#    #+#             */
-/*   Updated: 2023/12/26 17:09:07 by ychen2           ###   ########.fr       */
+/*   Updated: 2023/12/31 14:01:09 by ychen2           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	sig_block(void)
 void	sig_init(void)
 {
 	signal(SIGINT, read_again);
-	signal(SIGQUIT, do_nothing);
+	signal(SIGQUIT, SIG_IGN);
 }
 
 void	sig_default(t_minishell *m)

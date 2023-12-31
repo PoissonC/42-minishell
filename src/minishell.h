@@ -6,7 +6,7 @@
 /*   By: ychen2 <ychen2@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 14:51:39 by ychen2            #+#    #+#             */
-/*   Updated: 2023/12/28 17:03:46 by ychen2           ###   ########.fr       */
+/*   Updated: 2023/12/31 14:01:28 by ychen2           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,7 +113,6 @@ void	main_loop(t_minishell *m);
 //signal
 void	sig_init(void);
 void	end_shell(t_minishell *m, int end_code);
-void	do_nothing(int signum);
 void	read_again(int signum);
 void	sig_int(int signum);
 void	sig_quit(int signum);
