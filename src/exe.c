@@ -6,11 +6,19 @@
 /*   By: ychen2 <ychen2@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 13:38:57 by ychen2            #+#    #+#             */
-/*   Updated: 2023/12/28 15:50:07 by ychen2           ###   ########.fr       */
+/*   Updated: 2023/12/31 14:33:07 by ychen2           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "exe.h"
+
+static void	handle_sigexit(int *status)
+{
+	if (WTERMSIG(*status) != SIGPIPE)
+		*status = WTERMSIG(*status) + 128;
+	else
+		*status = 0;
+}
 
 void	end_exe(t_minishell *m, int *status)
 {
@@ -29,7 +37,7 @@ void	end_exe(t_minishell *m, int *status)
 		if (WIFEXITED(*status))
 			*status = WEXITSTATUS(*status);
 		else if (WIFSIGNALED(*status))
-			*status = WTERMSIG(*status) + 128;
+			handle_sigexit(status);
 		if (*status == 130 && m->is_print_sig)
 			printf("^C\n");
 		else if (*status == 131 && m->is_print_sig)
